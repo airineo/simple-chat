@@ -1,40 +1,44 @@
-<div class="container ">
+<div class="container " >
     
+    <div  *ngIf="!isAddedUser" >
 
-    <div class="col-md-4 mb-4" *ngFor="let msj of mensajes">
-        {{msj}}
-    </div>
-    <div class="container fluid" >
+        <p class="text-right">Chat</p>
+
         <br/>
-    </div>
-    <div class="col-md-4 mb-4">
+        <label>Nombre:</label>
+        <input [(ngModel)]="nombreUsuario" class="form-control"
+        (keyup)="$event.keyCode == 13 && acceder()"/>
+        
+        <br/>
+
+        <div style="text-align: right;">
+          <button (click)="acceder()" class="btn btn-primary" [disabled] = !nombreUsuario  >Guardar</button>
+        </div>
       
-          <input [(ngModel)]="mensaje" class="form-control"
-           (keyup)="$event.keyCode == 13 && enviarMensaje()"/>
-          
-    </div>
-    <div class="col-md-4 mb-4">
-        <button (click)="enviarMensaje()"   class="btn btn-success">Enviar</button>
-    </div>
+    </div >
+    <div *ngIf="isAddedUser" >
+      
+      <p class="text-right">Config.</p>
+      <br/>
+      <div  *ngFor="let msj of mensajes" style="font-size: medium;">
+
+          {{msj}}
+      </div>
+      <div class="container fluid" >
+          <br/>
+      </div>
+      
+        <div >
+            <input [(ngModel)]="mensaje" class="form-control"
+            (keyup)="$event.keyCode == 13 && enviarMensaje()" /><br/>
+            <button (click)="enviarMensaje()"  class="btn btn-success">Enviar</button>
+        </div>
+        
     
-  <!--<nav class="navbar navbar-expand-md bg-dark navbar-dark">  
-      <a class="navbar-brand" href="#">Navbar</a>  
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">  
-        <span class="navbar-toggler-icon"></span>  
-      </button>  
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">  
-        <ul class="navbar-nav">  
-          <li class="nav-item">  
-            <a class="nav-link" href="#">Link</a>  
-          </li>  
-          <li class="nav-item">  
-            <a class="nav-link" href="#">Link</a>  
-          </li>  
-          <li class="nav-item">  
-            <a class="nav-link" href="#">Link</a>  
-          </li>      
-        </ul>  
-      </div>    
-    </nav>   -->
+      <br/>
+      <!-- <div >
+          <button (click)="enviarMensaje()"   class="btn btn-success">Enviar</button>
+      </div> -->
+    </div>
    
 </div>  
