@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   acceder(){
      this.chatService.establecerUsuario(this.nombreUsuario);
      
-     this.nombreUsuario = "";
+     //this.nombreUsuario = "";
      this.isAddedUser = true;
   }
   

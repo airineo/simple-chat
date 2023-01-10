@@ -1,44 +1,42 @@
-<div class="container " >
-    
-    <div  *ngIf="!isAddedUser" >
+<div class="container ">
+  <b>{{ nombreUsuario}}</b>
+  <div *ngIf="!isAddedUser">
 
-        <p class="text-right">Chat</p>
+    <p class="text-right">Chat</p>
 
-        <br/>
-        <label>Nombre:</label>
-        <input [(ngModel)]="nombreUsuario" class="form-control"
-        (keyup)="$event.keyCode == 13 && acceder()"/>
-        
-        <br/>
+    <br />
+    <label>¿Cuál es tu nombre?</label>
+    <input [(ngModel)]="nombreUsuario" class="form-control" (keyup)="$event.keyCode == 13 && acceder()" />
 
-        <div style="text-align: right;">
-          <button (click)="acceder()" class="btn btn-primary" [disabled] = !nombreUsuario  >Guardar</button>
-        </div>
-      
-    </div >
-    <div *ngIf="isAddedUser" >
-      
-      <p class="text-right">Config.</p>
-      <br/>
-      <div  *ngFor="let msj of mensajes" style="font-size: medium;">
+    <br />
 
-          {{msj}}
-      </div>
-      <div class="container fluid" >
-          <br/>
-      </div>
-      
-        <div >
-            <input [(ngModel)]="mensaje" class="form-control"
-            (keyup)="$event.keyCode == 13 && enviarMensaje()" /><br/>
-            <button (click)="enviarMensaje()"  class="btn btn-success">Enviar</button>
-        </div>
-        
-    
-      <br/>
-      <!-- <div >
+    <div style="text-align: right;">
+      <button (click)="acceder()" class="btn btn-primary" [disabled]=!nombreUsuario>Guardar</button>
+    </div>
+
+  </div>
+  <div *ngIf="isAddedUser">
+
+    <p class="text-right">Config.</p>
+    <br />
+    <div *ngFor="let msj of mensajes" style="font-size: medium;">
+
+      {{msj}}
+    </div>
+    <div class="container fluid">
+      <br />
+    </div>
+
+    <div>
+      <input [(ngModel)]="mensaje" class="form-control" (keyup)="$event.keyCode == 13 && enviarMensaje()" /><br />
+      <button (click)="enviarMensaje()" class="btn btn-success">Enviar</button>
+    </div>
+
+
+    <br />
+    <!-- <div >
           <button (click)="enviarMensaje()"   class="btn btn-success">Enviar</button>
       </div> -->
-    </div>
-   
-</div>  
+  </div>
+
+</div>

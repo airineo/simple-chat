@@ -23,7 +23,13 @@ export class ChatService {
             this.socket.on('new-message', (mensaje) =>{
                 console.log("mensaje obtenido :");
                 console.log(mensaje);
-                observer.next(mensaje);
+                var a:Array<string>;
+                var message = "";
+                a = mensaje.split(":");
+                console.log(a);
+                message = (a[2] == this.socket.id ? "Tú" : a[0] ) + ": " + a[1]; 
+                observer.next(message);
+               
             }); 
 
             this.socket.on('user joined', (data) => {
@@ -35,6 +41,7 @@ export class ChatService {
     public establecerUsuario(usuario){
         console.log(usuario);
         this.socket.emit('add user', usuario);
+        console.log(this.socket.id);
     }
 
 }
