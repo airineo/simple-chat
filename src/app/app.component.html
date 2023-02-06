@@ -2,24 +2,24 @@
   <b>{{ nombreUsuario}}</b>
   <div *ngIf="!isAddedUser">
 
-    <p class="text-right">Chat</p>
+    
 
     <br />
-    <label>¿Cuál es tu nombre?</label>
-    <input [(ngModel)]="nombreUsuario" class="form-control" (keyup)="$event.keyCode == 13 && acceder()" />
+    <label>Name</label>
+    <input [(ngModel)]="userName" class="form-control" (keyup)="$event.keyCode == 13 && access()" />
 
     <br />
 
     <div style="text-align: right;">
-      <button (click)="acceder()" class="btn btn-primary" [disabled]=!nombreUsuario>Guardar</button>
+      <button (click)="access()" class="btn btn-primary" [disabled]=!userName>Save</button>
     </div>
 
   </div>
   <div *ngIf="isAddedUser">
 
-    <p class="text-right">Config.</p>
+    
     <br />
-    <div *ngFor="let msj of mensajes" style="font-size: medium;">
+    <div *ngFor="let msj of messages" style="font-size: medium;">
 
       {{msj}}
     </div>
@@ -28,15 +28,13 @@
     </div>
 
     <div>
-      <input [(ngModel)]="mensaje" class="form-control" (keyup)="$event.keyCode == 13 && enviarMensaje()" /><br />
-      <button (click)="enviarMensaje()" class="btn btn-success">Enviar</button>
+      <input [(ngModel)]="message" class="form-control" (keyup)="$event.keyCode == 13 && sendMessage()" /><br />
+      <button (click)="sendMessage()" class="btn btn-success">Send</button>
     </div>
 
 
     <br />
-    <!-- <div >
-          <button (click)="enviarMensaje()"   class="btn btn-success">Enviar</button>
-      </div> -->
+    
   </div>
 
 </div>

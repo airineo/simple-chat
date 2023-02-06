@@ -4,44 +4,37 @@ import { Observable } from 'rxjs';
 export class ChatService {
     private url = 'http://localhost:3000';
     private socket;    
-    public usuario : string;
+    public user : string;
 
     constructor() {
         this.socket = io(this.url);
     }
 
-    public enviarMensaje(mensaje){
-        console.log("mensaje a enviar " + mensaje);
-        this.socket.emit('new-message', mensaje);
+    public sendMessage(message){
+        this.socket.emit('new-message', message);
     }
 
-    public obtenerMensaje = () => {
-        console.log("tratara de ejecutar la función dentro de -obtenermensaje ")
+    public getMessage = () => {
         return Observable.create((observer) =>{
-            console.log(observer);
-            
-            this.socket.on('new-message', (mensaje) =>{
-                console.log("mensaje obtenido :");
-                console.log(mensaje);
+           
+            this.socket.on('new-message', (message) =>{
+               
                 var a:Array<string>;
-                var message = "";
-                a = mensaje.split(":");
-                console.log(a);
-                message = (a[2] == this.socket.id ? "Tú" : a[0] ) + ": " + a[1]; 
-                observer.next(message);
+                var msg = "";
+                a = message.split(":");
+                
+                msg = (a[2] == this.socket.id ? "You" : a[0] ) + ": " + a[1]; 
+                observer.next(msg);
                
             }); 
 
             this.socket.on('user joined', (data) => {
-                console.log(data.username + ' joined');
-                this.usuario = data.username;
+                this.user = data.username;
             });
         });
     }
-    public establecerUsuario(usuario){
-        console.log(usuario);
-        this.socket.emit('add user', usuario);
-        console.log(this.socket.id);
+    public setUser(user){
+        this.socket.emit('add user', user);
     }
 
 }

@@ -8,33 +8,33 @@ import { ChatService } from './chat.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'chat-simple19';
-  mensaje : string;
-  mensajes: string[] = [];
-  nombreUsuario : string;
+  title = 'notification-test';
+  message : string;
+  messages: string[] = [];
+  userName : string;
   isAddedUser : boolean = false;
   sessionSocketUser : string;
 
   constructor(private chatService: ChatService) { }
 
-  enviarMensaje(){
-     this.chatService.enviarMensaje(this.mensaje);
+  sendMessage(){
+     this.chatService.sendMessage(this.message);
 
-     this.mensaje = "";
+     this.message = "";
   }
-  acceder(){
-     this.chatService.establecerUsuario(this.nombreUsuario);
+  access(){
+     this.chatService.setUser(this.userName);
      
-     //this.nombreUsuario = "";
+     
      this.isAddedUser = true;
   }
   
   ngOnInit(){
-      console.log("ejecutando init de component...");
-      this.chatService.obtenerMensaje().subscribe((mensaje : string) =>{
-          console.log("mensaje a agregar : " +mensaje );
+      
+      this.chatService.getMessage().subscribe((message : string) =>{
+          
          
-          this.mensajes.push(mensaje);
+          this.messages.push(message);
 
       });
   }
